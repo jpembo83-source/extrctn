@@ -1,0 +1,15 @@
+# robots.txt — extrctn.com
+#
+# Points every well-behaved crawler (Googlebot, Bingbot, etc.) at our
+# sitemap and allows the full site. Nothing to hide; no admin paths, no
+# draft content, no user data. Disallow rules would only slow indexing.
+#
+# AI/LLM crawlers are intentionally NOT blocked — we want to appear in
+# AI answer surfaces (ChatGPT, Perplexity, Claude, Gemini), which pull
+# from indexed web content and respect the same robots.txt. Policy can
+# change when the referral-traffic picture is clearer.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://extrctn.com/sitemap.xml

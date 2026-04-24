@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Search Console ownership verification. Must stay in place
+     even after verification succeeds — removing the tag un-verifies
+     the property and Google stops indexing. -->
+<meta name="google-site-verification" content="PVoaDQrfnLs1YKiIv0c4FsD_NfjkTiwHuCwMynQEUJ4" />
+
+<!-- ── SEO primaries ─────────────────────────────────────────────────────
+     Title + meta-description pair chosen per the April 2026 SEO brief.
+     Title front-loads the two highest-volume category terms ("espresso
+     log", "coffee tracker") and explicitly names the platform ("iPhone")
+     because branded+platform queries ("espresso app iphone") are a
+     dominant share of the target search intent. Meta description leads
+     with the same framing and then pulls the four v2 differentiators
+     (AI scan, Acaia, grinder DB, freshness) before the CTA cue. Kept
+     under Google's ~160-char truncation band. -->
+<title>Extraction — Espresso Log & Coffee Tracker App for iPhone</title>
+<meta name="description" content="Extraction is the home barista app for serious espresso. AI bag scanning, Acaia scale integration, 157-grinder database, freshness tracking & shot analytics. Free trial.">
+
+<!-- Canonical — Google needs a single authoritative URL so link equity
+     consolidates. Omit the trailing slash to match the redirect rules
+     in netlify.toml. -->
+<link rel="canonical" href="https://extrctn.com/">
+
+<!-- Open Graph + Twitter — mirror the SEO-tuned copy so shared links
+     render the same message on iMessage, Slack, X, Reddit, etc. -->
+<meta property="og:title" content="Extraction — Espresso Log & Coffee Tracker for iPhone">
+<meta property="og:description" content="Pair an Acaia scale, scan any bag, dial in every shot. The home barista app for serious espresso.">
+<meta property="og:image" content="https://extrctn.com/og-image.png">
+<meta property="og:url" content="https://extrctn.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Extraction">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Extraction — Espresso Log & Coffee Tracker for iPhone">
+<meta name="twitter:description" content="Pair an Acaia scale, scan any bag, dial in every shot. The home barista app for serious espresso.">
+<meta name="twitter:image" content="https://extrctn.com/og-image.png">
+
+<!-- App-store association for Smart App Banner on Safari iOS and for
+     Apple's Universal Links metadata crawler. -->
+<meta name="apple-itunes-app" content="app-id=6761392610">
+
+<!-- Keywords meta — Google ignores it, but Bing still lightly weights it
+     and some app-review aggregators scrape for it. Cheap hedge. -->
+<meta name="keywords" content="espresso app, espresso log, coffee tracker, home barista app, brew log app, espresso shot timer, Acaia scale app, AI coffee recipe, espresso dial in app, coffee journal app, specialty coffee app, coffee bean tracker, grinder settings app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0C0906;
+  color: #EFE9DF;
+  overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { text-decoration: none; color: inherit; transition: color 0.15s ease; }
+button { cursor: pointer; border: none; background: none; font-family: 'DM Sans', sans-serif; }
+input { font-family: 'DM Sans', sans-serif; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  background: rgba(12, 9, 6, 0.95);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.nav.scrolled { border-bottom-color: rgba(239, 233, 223, 0.07); }
+.nav-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 500; font-size: 22px;
+  color: #EFE9DF; user-select: none;
+}
+.nav-wordmark span { color: #EFE9DF; }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-signin {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: rgba(239, 233, 223, 0.55);
+}
+.nav-signin:hover { color: #EFE9DF; }
+.nav-download {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  background: #C4824A; color: #0C0906;
+  border-radius: 20px; padding: 8px 16px;
+  font-weight: 500; transition: background 0.15s ease;
+}
+.nav-download:hover { background: #D9955E; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 4px; background: none; border: none;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px; background: #EFE9DF;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+@media (max-width: 767px) {
+  .nav-signin { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-download { display: none; }
+}
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 999;
+  background: #0C0906;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 32px;
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu.open { transform: translateY(0); }
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 36px; color: #EFE9DF;
+}
+.mobile-menu a:hover { color: #C4824A; }
+.mobile-close {
+  position: absolute; top: 20px; right: 28px;
+  font-family: 'DM Sans', sans-serif; font-size: 28px;
+  color: #EFE9DF; background: none; border: none; cursor: pointer;
+  line-height: 1;
+}
+
+/* ── SHARED ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 120px 0; }
+@media (max-width: 767px) { .section-pad { padding: 64px 0; } }
+
+/* ── FADE IN ── */
+.fade-in {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 100px 24px 60px;
+  position: relative;
+}
+.hero-pill {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 2.5px;
+  color: #C4824A;
+  background: rgba(196, 130, 74, 0.13);
+  border: 1px solid rgba(196, 130, 74, 0.25);
+  border-radius: 999px; padding: 6px 16px;
+  margin-bottom: 40px;
+}
+.hero-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 300;
+  font-size: 96px; line-height: 0.9;
+  color: #EFE9DF; margin-bottom: 28px;
+}
+@media (max-width: 767px) { .hero-heading { font-size: 56px; } }
+.hero-sub {
+  font-family: 'DM Sans', sans-serif; font-size: 20px;
+  color: rgba(239, 233, 223, 0.55);
+  max-width: 520px; line-height: 1.65; margin: 0 auto 36px;
+}
+@media (max-width: 767px) { .hero-sub { font-size: 16px; } }
+.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
+  background: linear-gradient(135deg, #C4824A, #D9955E);
+  color: #0C0906; border-radius: 14px; padding: 16px 28px;
+  transition: opacity 0.15s ease;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  background: transparent; color: rgba(239, 233, 223, 0.7);
+  border: 1px solid rgba(239, 233, 223, 0.2);
+  border-radius: 14px; padding: 16px 28px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.btn-secondary:hover { border-color: rgba(239, 233, 223, 0.4); color: #EFE9DF; }
+.hero-proof {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: rgba(239, 233, 223, 0.3); margin-bottom: 48px;
+}
+
+/* Hero bean behind heading */
+.hero-heading-wrap {
+  position: relative;
+  display: inline-block;
+}
+.hero-bean-bg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px; height: 420px;
+  object-fit: contain;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  animation: beanGlow 4s ease-in-out infinite;
+}
+@media (max-width: 767px) { .hero-bean-bg { width: 280px; height: 280px; } }
+.hero-heading-wrap .hero-heading {
+  position: relative;
+  z-index: 1;
+}
+@keyframes beanGlow {
+  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.45; transform: translate(-50%, -50%) scale(1.03); }
+}
+
+/* Phone mockup — screenshot in frame */
+.phone-mockup {
+  width: 280px; border-radius: 38px;
+  border: 1.5px solid rgba(239, 233, 223, 0.12);
+  background: #0C0906; overflow: hidden;
+  position: relative; margin: 0 auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(239, 233, 223, 0.05);
+}
+@media (max-width: 767px) { .phone-mockup { width: 220px; } }
+.phone-mockup img {
+  display: block; width: 100%; height: auto;
+  border-radius: 36px;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-line {
+  width: 1px; height: 40px; background: rgba(239, 233, 223, 0.15);
+  position: relative; overflow: hidden;
+}
+.scroll-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(239, 233, 223, 0.4);
+  position: absolute; left: -1px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0% { top: 0; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: 37px; opacity: 0; }
+}
+.scroll-text {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(239, 233, 223, 0.15);
+}
+
+/* Section bean divider */
+.section-bean-divider {
+  text-align: center; margin-bottom: 32px;
+}
+.section-bean-icon {
+  width: 48px; height: 48px;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 20px rgba(196, 130, 74, 0.25));
+}
+
+/* ── FEATURES ── */
+.features-heading {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 56px; text-align: center; color: #EFE9DF; margin-bottom: 16px;
+}
+@media (max-width: 767px) { .features-heading { font-size: 38px; } }
+.features-sub {
+  font-family: 'DM Sans', sans-serif; font-size: 16px;
+  color: rgba(239, 233, 223, 0.55); text-align: center;
+  max-width: 520px; margin: 0 auto 56px;
+}
+.features-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 767px) { .features-grid { grid-template-columns: 1fr; } }
+.feature-card {
+  background: #16120D;
+  border: 1px solid rgba(239, 233, 223, 0.10);
+  border-radius: 24px; padding: 28px;
+}
+.feature-icon { margin-bottom: 16px; }
+.feature-icon svg { width: 32px; height: 32px; }
+.feature-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  color: #EFE9DF; margin-bottom: 8px;
+}
+.feature-desc {
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: rgba(239, 233, 223, 0.65); line-height: 1.6;
+}
+
+/* ── SPOTLIGHT ── */
+.spotlight {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+@media (max-width: 767px) { .spotlight { grid-template-columns: 1fr; gap: 40px; } }
+.spotlight-label {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 2.5px;
+  color: #C4824A; margin-bottom: 16px;
+}
+.spotlight-heading {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 52px; color: #EFE9DF; margin-bottom: 20px; line-height: 1.05;
+}
+@media (max-width: 767px) { .spotlight-heading { font-size: 36px; } }
+.spotlight-body {
+  font-family: 'DM Sans', sans-serif; font-size: 16px;
+  color: rgba(239, 233, 223, 0.55); line-height: 1.65; margin-bottom: 28px;
+}
+.spotlight-details { display: flex; flex-direction: column; gap: 14px; }
+.spotlight-detail {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: rgba(239, 233, 223, 0.7);
+}
+.spotlight-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #C4824A; flex-shrink: 0;
+}
+
+/* Spotlight phone — screenshot in frame */
+.spotlight-phone {
+  width: 280px; border-radius: 38px;
+  border: 1.5px solid rgba(239, 233, 223, 0.14);
+  background: #0C0906; overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(239, 233, 223, 0.05);
+}
+@media (max-width: 767px) { .spotlight-phone { width: 240px; } }
+.spotlight-phone img {
+  display: block; width: 100%; height: auto;
+  border-radius: 36px;
+}
+
+/* ── STATS ── */
+.stats-section {
+  background: #121009;
+  border-top: 1px solid rgba(239, 233, 223, 0.07);
+  border-bottom: 1px solid rgba(239, 233, 223, 0.07);
+}
+.stats-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; text-align: center;
+}
+@media (max-width: 767px) { .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+.stat-number {
+  font-family: 'JetBrains Mono', monospace; font-size: 64px;
+  color: #C4824A; font-weight: 400; line-height: 1;
+}
+@media (max-width: 767px) { .stat-number { font-size: 48px; } }
+.stat-label {
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: rgba(239, 233, 223, 0.55); margin-top: 8px;
+}
+.stat-desc {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: rgba(239, 233, 223, 0.28); margin-top: 4px;
+}
+
+/* ── PRICING ── */
+.pricing-heading {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 56px; text-align: center; color: #EFE9DF; margin-bottom: 16px;
+}
+@media (max-width: 767px) { .pricing-heading { font-size: 38px; } }
+.pricing-sub {
+  font-family: 'DM Sans', sans-serif; font-size: 16px;
+  color: rgba(239, 233, 223, 0.55); text-align: center;
+  max-width: 520px; margin: 0 auto 56px;
+}
+.pricing-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+  align-items: start;
+}
+@media (max-width: 767px) { .pricing-grid { grid-template-columns: 1fr; } }
+.pricing-card {
+  background: #16120D;
+  border: 1px solid rgba(239, 233, 223, 0.10);
+  border-radius: 24px; padding: 32px; position: relative;
+}
+.pricing-card.featured { border: 1.5px solid #C4824A; }
+.pricing-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: #C4824A; color: #0C0906;
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
+  padding: 4px 14px; border-radius: 999px;
+}
+.pricing-plan {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #C4824A; margin-bottom: 16px;
+}
+.pricing-price {
+  font-family: 'JetBrains Mono', monospace; font-size: 48px;
+  color: #EFE9DF; font-weight: 400; line-height: 1;
+}
+.pricing-period {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: rgba(239, 233, 223, 0.28); margin-top: 4px; margin-bottom: 24px;
+}
+.pricing-features {
+  list-style: none; margin-bottom: 28px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pricing-features li {
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: rgba(239, 233, 223, 0.55);
+  display: flex; align-items: center; gap: 10px;
+}
+.pricing-features li::before {
+  content: ''; display: block; width: 5px; height: 5px;
+  border-radius: 50%; background: #C4824A; flex-shrink: 0;
+}
+.pricing-cta-outlined {
+  display: block; width: 100%; text-align: center;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  color: #C4824A; background: transparent;
+  border: 1px solid rgba(196, 130, 74, 0.4);
+  border-radius: 14px; padding: 14px 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.pricing-cta-outlined:hover { background: rgba(196, 130, 74, 0.08); border-color: #C4824A; }
+.pricing-cta-filled {
+  display: block; width: 100%; text-align: center;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  color: #0C0906;
+  background: linear-gradient(135deg, #C4824A, #D9955E);
+  border-radius: 14px; padding: 14px 0; border: none;
+  transition: opacity 0.15s ease;
+}
+.pricing-cta-filled:hover { opacity: 0.9; }
+.pricing-note {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: rgba(239, 233, 223, 0.28); text-align: center;
+  margin-top: 32px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #0C0906;
+  border-top: 1px solid rgba(239, 233, 223, 0.07);
+  padding: 64px 0 40px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+}
+@media (max-width: 767px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+.footer-wordmark {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 500; font-size: 20px; color: #EFE9DF; margin-bottom: 8px;
+}
+.footer-wordmark span { color: #EFE9DF; }
+.footer-tagline {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: rgba(239, 233, 223, 0.28); margin-bottom: 12px;
+}
+.footer-copy {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: rgba(239, 233, 223, 0.28);
+}
+.footer-col-heading {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #C4824A; margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: rgba(239, 233, 223, 0.55);
+}
+.footer-links a:hover { color: #EFE9DF; }
+.footer-separator {
+  border: none; border-top: 1px solid rgba(239, 233, 223, 0.07);
+  margin: 40px 0 24px;
+}
+.footer-bottom {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: rgba(239, 233, 223, 0.28); text-align: center;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid #C4824A; outline-offset: 2px;
+}
+</style>
+
+<!-- ── Structured data ────────────────────────────────────────────────────
+     SoftwareApplication schema unlocks a rich snippet in Google results
+     (name, platform, price, rating pulled from the App Store graph).
+     Also feeds the knowledge panel and AI answer boxes. Price of 0 is
+     correct — the app is free to download with IAPs, which is how Apple
+     categorises it. Update aggregateRating when we have enough ASC
+     ratings to be worth displaying (threshold usually ~25). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Extraction",
+  "alternateName": "Extraction — Espresso Log & Coffee Tracker",
+  "description": "Espresso log and coffee tracker for home baristas. AI bag scanning, Acaia scale integration, 157-grinder database, freshness tracking, shot analytics, AI coaching.",
+  "applicationCategory": "LifestyleApplication",
+  "applicationSubCategory": "Food & Drink",
+  "operatingSystem": "iOS 15.0",
+  "url": "https://extrctn.com/",
+  "downloadUrl": "https://apps.apple.com/us/app/extraction/id6761392610",
+  "installUrl": "https://apps.apple.com/us/app/extraction/id6761392610",
+  "image": "https://extrctn.com/og-image.png",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Extraction",
+    "url": "https://extrctn.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Extraction",
+    "url": "https://extrctn.com/"
+  }
+}
+</script>
+
+<!-- Organization schema — tells Google that Extraction is a branded
+     entity, unlocks knowledge-panel eligibility. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Extraction",
+  "url": "https://extrctn.com/",
+  "logo": "https://extrctn.com/og-image.png",
+  "sameAs": [
+    "https://apps.apple.com/us/app/extraction/id6761392610"
+  ]
+}
+</script>
+
+<!-- WebSite schema enables sitelinks search box eligibility and makes
+     the homepage machine-parseable as the site entry. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Extraction",
+  "url": "https://extrctn.com/",
+  "inLanguage": "en"
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-wordmark" aria-label="Extraction home">Extrac<span>tion</span></a>
+  <div class="nav-right">
+      <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="nav-download" role="button" target="_blank" rel="noopener">Download on the App Store</a>
+    <button class="nav-hamburger" aria-label="Open menu" id="hamburgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <button class="mobile-close" aria-label="Close menu" id="mobileClose">&times;</button>
+  <a href="#features" onclick="closeMobile()">Features</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="btn-primary" style="font-size:16px;margin-top:12px;" target="_blank" rel="noopener" onclick="closeMobile()">Download</a>
+</div>
+
+<!-- HERO
+     H1 front-loads the two highest-priority target queries ("espresso
+     log", "home baristas") in the same italic treatment as the old
+     "Espresso Intelligence" brand mark. The editorial tone is preserved
+     — this isn't a keyword-stuffed headline, it's a sentence that
+     happens to contain the two phrases Google ranks us for. The
+     "Espresso Intelligence" phrase is kept as the nav pill eyebrow so
+     the brand identity survives the rewrite. -->
+<section class="hero" id="hero">
+  <div class="hero-pill fade-in">Espresso Intelligence · Now on the App Store</div>
+  <div class="hero-heading-wrap">
+    <img src="bean.png" alt="" class="hero-bean-bg" aria-hidden="true">
+    <h1 class="hero-heading fade-in">The espresso log<br>for home baristas.</h1>
+  </div>
+  <p class="hero-sub fade-in">Extraction is a coffee tracker, shot diary, and AI brewing partner — for iPhone. Dial in every shot. Scan any bag. Pair your Acaia scale. Get smarter every morning.</p>
+  <div class="hero-buttons fade-in">
+    <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="btn-primary" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12.52 8.42c-.02-1.97 1.6-2.92 1.68-2.97-.92-1.34-2.34-1.52-2.85-1.55-1.21-.12-2.37.72-2.98.72-.62 0-1.57-.7-2.59-.68-1.33.02-2.56.78-3.24 1.97-1.39 2.4-.35 5.95.99 7.9.66.95 1.44 2.02 2.47 1.98.99-.04 1.37-.64 2.57-.64 1.2 0 1.54.64 2.58.62 1.07-.02 1.74-.97 2.39-1.93.76-1.1 1.07-2.17 1.08-2.22-.02-.01-2.08-.8-2.1-3.2zM10.58 2.46c.54-.67.91-1.59.81-2.51-.78.03-1.73.52-2.29 1.18-.5.58-.94 1.52-.82 2.41.87.07 1.76-.44 2.3-1.08z" fill="#0C0906"/></svg>
+      Download Free — iPhone
+    </a>
+  </div>
+  <p class="hero-proof fade-in">14 day free trial &middot; No card required &middot; Cancel anytime</p>
+
+  <div class="phone-mockup fade-in">
+    <img src="screenshot-timer.png" alt="Extraction dial-in timer showing a live espresso shot with arc visualisation and sweet window" loading="lazy">
+  </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"><div class="scroll-dot"></div></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section-pad" id="features">
+  <div class="container">
+    <div class="section-bean-divider" aria-hidden="true">
+      <img src="bean-small.png" alt="" class="section-bean-icon">
+    </div>
+    <h2 class="features-heading fade-in">The complete espresso practice</h2>
+    <p class="features-sub fade-in">An espresso shot timer, a coffee bean tracker, and an AI brewing partner — built for the people who take their craft seriously.</p>
+    <div class="features-grid">
+
+      <!-- Each feature card's copy is tuned to carry one of the priority
+           keywords from the SEO brief: "espresso shot timer", "AI
+           coffee recipe", "coffee bean tracker" / "coffee freshness
+           tracker", "grinder settings app", "Acaia scale app",
+           "espresso dial in app". Target phrases appear naturally in
+           the body copy rather than stuffed into headings. -->
+      <div class="feature-card fade-in" style="transition-delay:0s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#C4824A" stroke-width="1.5" fill="none"/><path d="M16 8 A8 8 0 0 1 24 16" stroke="#C4824A" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="24" cy="16" r="2" fill="#C4824A"/></svg>
+        </div>
+        <h3 class="feature-name">Espresso Shot Timer</h3>
+        <p class="feature-desc">A full-screen espresso shot timer guides you through pre-extraction, the sweet window, and the moment to stop. The extraction arc sweeps in real time and haptic feedback signals the perfect pull.</p>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.1s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="6" y="8" width="20" height="16" rx="3" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="16" cy="16" r="4" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="22" cy="11" r="1.5" fill="#C4824A"/></svg>
+        </div>
+        <h3 class="feature-name">AI Coffee Recipes</h3>
+        <p class="feature-desc">Scan any coffee bag and Extraction reads the label — roaster, origin, process, variety — and generates a personalised AI coffee recipe tuned to your specific equipment.</p>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.2s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#C4824A" stroke-width="1.5" fill="none"/><path d="M16 10c0 3-2 5-4 6 2 1 4 3 4 6 0-3 2-5 4-6-2-1-4-3-4-6z" fill="#C4824A" opacity="0.7"/></svg>
+        </div>
+        <h3 class="feature-name">Coffee Bean Tracker</h3>
+        <p class="feature-desc">Track every bag from wishlist to archive with a built-in coffee freshness tracker. Peak alerts fire when a bean enters its sweet window. Never brew a past-peak coffee again.</p>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.3s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="16" cy="16" r="4" stroke="#C4824A" stroke-width="1.5" fill="none"/><line x1="16" y1="6" x2="16" y2="10" stroke="#C4824A" stroke-width="1.5"/><line x1="16" y1="22" x2="16" y2="26" stroke="#C4824A" stroke-width="1.5"/><line x1="6" y1="16" x2="10" y2="16" stroke="#C4824A" stroke-width="1.5"/><line x1="22" y1="16" x2="26" y2="16" stroke="#C4824A" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="feature-name">Grinder Settings, Solved</h3>
+        <p class="feature-desc">157 grinders backfilled with their native scale and recommended settings per brew method. The dial opens with the sweet-spot arc already lit for your specific grinder.</p>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.4s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="10" width="16" height="14" rx="2" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="3" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="1" fill="#C4824A"/><path d="M12 10V8h8v2" stroke="#C4824A" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <h3 class="feature-name">Acaia Scale Integration</h3>
+        <p class="feature-desc">Pair an Acaia Lunar, Pearl, or Pyxis and the brew runs itself — tare, timer, first-drip, yield, and pour curve all automatic. The world's most precise brew scale, fully integrated.</p>
+      </div>
+
+      <div class="feature-card fade-in" style="transition-delay:0.5s">
+        <div class="feature-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 6c-4.4 0-8 3.1-8 7 0 2.4 1.3 4.5 3.3 5.8.2 1.4-.3 3.2-.3 3.2s2.5-1 3.5-1.5c.5.1 1 .1 1.5.1 4.4 0 8-3.1 8-7s-3.6-7-8-7z" stroke="#C4824A" stroke-width="1.5" fill="none"/><circle cx="16" cy="11" r="1.5" fill="#C4824A"/><path d="M14 14.5c0 1.1.9 2 2 2s2-.9 2-2" stroke="#C4824A" stroke-width="1.2" fill="none"/></svg>
+        </div>
+        <h3 class="feature-name">AI Coaching</h3>
+        <p class="feature-desc">A weekly AI coaching insight generated from your shot history — specific observations about your technique, your coffees, and the one change most likely to improve your next brew.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT -->
+<section class="section-pad">
+  <div class="container">
+    <div class="spotlight">
+      <div class="fade-in">
+        <div class="spotlight-label">Espresso Dial-In</div>
+        <h2 class="spotlight-heading">The espresso dial-in app that thinks like a barista.</h2>
+        <p class="spotlight-body">Extraction is the only espresso dial-in app with real-time extraction arc visualisation, integrated Acaia scale support, and an AI recipe engine tuned to your specific machine and grinder. Watch the arc sweep, feel the haptic tap when you enter the sweet window, and stop with confidence.</p>
+        <div class="spotlight-details">
+          <div class="spotlight-detail"><div class="spotlight-dot"></div>Extraction arc updates every 50ms</div>
+          <div class="spotlight-detail"><div class="spotlight-dot"></div>Haptic feedback at the sweet window</div>
+          <div class="spotlight-detail"><div class="spotlight-dot"></div>Green zone signals the perfect stop</div>
+        </div>
+      </div>
+      <div class="fade-in" style="transition-delay:0.15s">
+        <div class="spotlight-phone">
+          <img src="screenshot-scan.png" alt="Extraction AI bag scan showing V60 brew recipe for Hunkute Kooperative Bio" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="section-pad" id="pricing">
+  <div class="container">
+    <h2 class="pricing-heading fade-in">Brew without limits</h2>
+    <p class="pricing-sub fade-in">Choose the plan that matches your practice. Every plan starts with a free trial.</p>
+    <div class="pricing-grid">
+
+      <div class="pricing-card fade-in" style="transition-delay:0s">
+        <div class="pricing-plan">Monthly</div>
+        <div class="pricing-price" id="priceMonthly">&pound;6.99</div>
+        <div class="pricing-period" id="periodMonthly">per month, billed monthly</div>
+        <ul class="pricing-features">
+          <li>Unlimited shots</li>
+          <li>All brew methods</li>
+          <li>AI bag scanning</li>
+          <li>Bean lifecycle</li>
+          <li>Equipment tracking</li>
+          <li>Full analytics</li>
+          <li>AI coaching</li>
+          <li>Peak alerts</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="pricing-cta-outlined" role="button" target="_blank" rel="noopener">Start Free Trial</a>
+      </div>
+
+      <div class="pricing-card featured fade-in" style="transition-delay:0.1s">
+        <div class="pricing-badge">Best Value</div>
+        <div class="pricing-plan">Annual</div>
+        <div class="pricing-price" id="priceAnnual">&pound;59.99</div>
+        <div class="pricing-period" id="periodAnnual">per year &middot; Save 28%</div>
+        <ul class="pricing-features">
+          <li>Unlimited shots</li>
+          <li>All brew methods</li>
+          <li>AI bag scanning</li>
+          <li>Bean lifecycle</li>
+          <li>Equipment tracking</li>
+          <li>Full analytics</li>
+          <li>AI coaching</li>
+          <li>Peak alerts</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="pricing-cta-filled" role="button" target="_blank" rel="noopener">Start Free Trial</a>
+      </div>
+
+      <div class="pricing-card fade-in" style="transition-delay:0.2s">
+        <div class="pricing-plan">Lifetime</div>
+        <div class="pricing-price" id="priceLifetime">&pound;99.99</div>
+        <div class="pricing-period">one-time purchase, forever</div>
+        <ul class="pricing-features">
+          <li>Unlimited shots</li>
+          <li>All brew methods</li>
+          <li>AI bag scanning</li>
+          <li>Bean lifecycle</li>
+          <li>Equipment tracking</li>
+          <li>Full analytics</li>
+          <li>AI coaching</li>
+          <li>Peak alerts</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="pricing-cta-filled" role="button" target="_blank" rel="noopener">Purchase Forever</a>
+      </div>
+
+    </div>
+    <p class="pricing-note fade-in">All plans include a 14-day free trial. Cancel anytime before your trial ends — you won't be charged.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-wordmark">Extrac<span>tion</span></div>
+        <div class="footer-tagline">Espresso Intelligence</div>
+        <div class="footer-copy">&copy; 2026 Extraction. All rights reserved.</div>
+      </div>
+      <div>
+        <div class="footer-col-heading">Product</div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="/blog/">Blog</a>
+          <a href="https://apps.apple.com/us/app/extraction/id6761392610" target="_blank" rel="noopener">Download</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-heading">Legal &amp; Support</div>
+        <div class="footer-links">
+          <a href="/support">Help Centre</a>
+          <a href="mailto:support@extrctn.com">Contact</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-separator">
+    <div class="footer-bottom">Made for people who believe every shot matters.</div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Nav scroll border
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // Mobile menu
+  var hamburger = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.add('open');
+    mobileClose.focus();
+  });
+  mobileClose.addEventListener('click', function() {
+    mobileMenu.classList.remove('open');
+    hamburger.focus();
+  });
+  window.closeMobile = function() {
+    mobileMenu.classList.remove('open');
+  };
+
+  // Fade-in IntersectionObserver
+  var fadeEls = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    fadeEls.forEach(function(el) { el.classList.add('is-visible'); });
+  }
+
+  // Geo-pricing — monthly prices from App Store Connect, annual ≈ 8.58×, lifetime ≈ 12.5×
+  // Format: [symbol, monthly, decimals, isPrefix]
+  var CURR = {
+    USD: ['$',7.99,2,1], EUR: ['\u20AC',8.99,2,1], GBP: ['\u00A3',7.99,2,1],
+    CHF: ['CHF\u00A0',7.00,2,1], AUD: ['A$',12.99,2,1], CAD: ['CA$',9.99,2,1],
+    BRL: ['R$',49.90,2,1], CNY: ['\u00A5',58,0,1], CLP: ['CLP\u00A0',9990,0,1],
+    COP: ['COP\u00A0',39900,0,1], CZK: ['',199,0,0,' K\u010D'], DKK: ['',69,0,0,' kr'],
+    EGP: ['E\u00A3',399.99,2,1], HKD: ['HK$',58,0,1], HUF: ['',3490,0,0,' Ft'],
+    IDR: ['Rp',129000,0,1], ILS: ['\u20AA',29.90,2,1], INR: ['\u20B9',799,0,1],
+    JPY: ['\u00A5',1300,0,1], KRW: ['\u20A9',11000,0,1], KZT: ['\u20B8',4990,0,1],
+    MXN: ['MX$',179,0,1], MYR: ['RM',39.90,2,1], NGN: ['\u20A6',12900,0,1],
+    NOK: ['',99,0,0,' kr'], NZD: ['NZ$',14.99,2,1], PEN: ['S/',34.90,2,1],
+    PHP: ['\u20B1',499,0,1], PLN: ['',39.99,2,0,' z\u0142'], QAR: ['QR',29.99,2,1],
+    RON: ['',39.99,2,0,' lei'], RUB: ['\u20BD',699,0,1], SAR: ['SR',34.99,2,1],
+    SEK: ['',99,0,0,' kr'], SGD: ['S$',9.98,2,1], THB: ['\u0E3F',299,0,1],
+    TRY: ['\u20BA',399.99,2,1], TWD: ['NT$',290,0,1], TZS: ['TSh',22900,0,1],
+    VND: ['\u20AB',249000,0,1], ZAR: ['R',149.99,2,1], AED: ['AED\u00A0',29.99,2,1],
+    PKR: ['Rs',2200,0,1]
+  };
+  // Country code → currency code
+  var CC = {
+    CH:'CHF',US:'USD',GB:'GBP',AU:'AUD',CA:'CAD',JP:'JPY',KR:'KRW',
+    BR:'BRL',IN:'INR',MX:'MXN',CN:'CNY',HK:'HKD',TW:'TWD',SG:'SGD',
+    NZ:'NZD',TH:'THB',PH:'PHP',MY:'MYR',ID:'IDR',VN:'VND',
+    SE:'SEK',NO:'NOK',DK:'DKK',PL:'PLN',CZ:'CZK',HU:'HUF',RO:'RON',
+    TR:'TRY',ZA:'ZAR',EG:'EGP',NG:'NGN',KE:'USD',SA:'SAR',AE:'AED',
+    QA:'QAR',KW:'USD',IL:'ILS',PK:'PKR',KZ:'KZT',
+    CL:'CLP',CO:'COP',PE:'PEN',TZ:'TZS',RU:'RUB',
+    AT:'EUR',BE:'EUR',BG:'EUR',HR:'EUR',CY:'EUR',EE:'EUR',FI:'EUR',
+    FR:'EUR',DE:'EUR',GR:'EUR',IE:'EUR',IT:'EUR',LV:'EUR',LT:'EUR',
+    LU:'EUR',MT:'EUR',NL:'EUR',PT:'EUR',SK:'EUR',SI:'EUR',ES:'EUR',
+    BA:'EUR',XK:'EUR',ME:'EUR',RS:'EUR'
+  };
+
+  function fmtPrice(val, c) {
+    var d = c[2], s;
+    if (d === 0) {
+      s = Math.round(val).toLocaleString('en');
+    } else {
+      s = val.toFixed(2);
+    }
+    return c[3] ? c[0] + s : s + (c[4] || c[0]);
+  }
+
+  function roundNice(val, dec) {
+    if (dec > 0) return Math.floor(val) + 0.99;
+    if (val >= 50000) return Math.round(val / 10000) * 10000;
+    if (val >= 5000) return Math.round(val / 1000) * 1000;
+    if (val >= 500) return Math.round(val / 100) * 100;
+    if (val >= 50) return Math.round(val / 10) * 10;
+    return Math.round(val);
+  }
+
+  function setPricing(cc) {
+    var code = CC[cc] || 'USD';
+    var c = CURR[code] || CURR.USD;
+    var mo = c[1];
+    var annual = roundNice(mo * 8.58, c[2]);
+    var lifetime = roundNice(mo * 12.5, c[2]);
+
+    document.getElementById('priceMonthly').textContent = fmtPrice(mo, c);
+    document.getElementById('priceAnnual').textContent = fmtPrice(annual, c);
+    document.getElementById('priceLifetime').textContent = fmtPrice(lifetime, c);
+    document.getElementById('periodAnnual').innerHTML = 'per year &middot; Save 28%';
+  }
+
+  fetch('https://ipapi.co/country_code/')
+    .then(function(r) { return r.text(); })
+    .then(function(cc) { setPricing(cc.trim()); })
+    .catch(function() { /* keep defaults */ });
+
+})();
+</script>
+</body>
+</html>

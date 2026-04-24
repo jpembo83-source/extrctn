@@ -1,0 +1,290 @@
+/*
+ * blog.css — shared styles for the Extraction blog.
+ *
+ * Each post's <head> links this file; the post's own HTML only carries
+ * the article content + per-post <meta> and JSON-LD. Centralising the
+ * styles here means a redesign is a one-file change and every post
+ * gets a perf win (browser cache + shared HTTP/2 stream).
+ *
+ * Colour tokens mirror the main site:
+ *   --bg    #0C0906  warm charcoal
+ *   --ink   #EFE9DF  cream
+ *   --amber #C4824A  editorial accent
+ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0C0906;
+  color: #EFE9DF;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: #C4824A; transition: color 0.15s ease; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  height: 64px;
+  background: rgba(12, 9, 6, 0.95);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 1px solid rgba(239, 233, 223, 0.07);
+}
+.nav-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 500; font-size: 22px;
+  color: #EFE9DF;
+}
+.nav-wordmark:hover { text-decoration: none; }
+.nav-download {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  background: #C4824A; color: #0C0906;
+  border-radius: 20px; padding: 8px 16px;
+  font-weight: 500; transition: background 0.15s ease;
+}
+.nav-download:hover { background: #D9955E; text-decoration: none; }
+
+/* ── Article container ── */
+article, .container { max-width: 720px; margin: 0 auto; padding: 64px 24px 120px; }
+.blog-index.container { max-width: 760px; padding: 80px 24px 120px; }
+
+.breadcrumb {
+  font-size: 12px; color: rgba(239, 233, 223, 0.4);
+  margin-bottom: 24px; letter-spacing: 0.5px;
+}
+.breadcrumb a { color: rgba(239, 233, 223, 0.55); }
+
+h1 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 300; font-size: 48px; line-height: 1.1;
+  margin-bottom: 18px;
+}
+@media (max-width: 767px) { h1 { font-size: 34px; } }
+
+.byline {
+  font-size: 12px; color: rgba(239, 233, 223, 0.45);
+  margin-bottom: 48px; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Hero image — sits between byline and TOC. Full-width inside the 720px
+   article container, 16:9 letterbox that doesn't CLS on load. */
+.hero-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: -16px 0 40px;
+  display: block;
+  border: 1px solid rgba(239, 233, 223, 0.08);
+}
+
+/* Inline image — mid-article visual break. Same container width as
+   paragraphs, 16:9 letterbox, breathing room above and below. */
+.inline-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 32px 0;
+  display: block;
+  border: 1px solid rgba(239, 233, 223, 0.08);
+}
+.inline-img + figcaption,
+.img-caption {
+  display: block;
+  margin: -16px 0 32px;
+  font-size: 12px;
+  color: rgba(239, 233, 223, 0.4);
+  letter-spacing: 0.3px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Index page hero */
+h1.page-title {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 300; font-size: 56px; line-height: 1.05;
+  color: #EFE9DF; margin-bottom: 16px;
+}
+@media (max-width: 767px) { h1.page-title { font-size: 40px; } }
+.eyebrow {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 2.5px;
+  color: #C4824A; margin-bottom: 20px;
+}
+.page-sub {
+  font-family: 'DM Sans', sans-serif; font-size: 17px;
+  color: rgba(239, 233, 223, 0.55); line-height: 1.6;
+  margin-bottom: 56px; max-width: 560px;
+}
+
+article h2 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 400; font-size: 30px; line-height: 1.2;
+  color: #EFE9DF;
+  margin: 48px 0 16px;
+}
+article h3 {
+  font-family: 'DM Sans', sans-serif; font-weight: 500;
+  font-size: 17px; color: #C4824A;
+  margin: 32px 0 10px; letter-spacing: 0.3px;
+}
+article p, article li {
+  font-size: 16px; line-height: 1.75;
+  color: rgba(239, 233, 223, 0.82);
+  margin-bottom: 16px;
+}
+article ul, article ol { padding-left: 24px; margin-bottom: 16px; }
+article li { margin-bottom: 8px; }
+article blockquote {
+  border-left: 2px solid #C4824A;
+  padding: 2px 0 2px 18px;
+  margin: 24px 0;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 20px; line-height: 1.5;
+  color: rgba(239, 233, 223, 0.9);
+}
+article strong { color: #EFE9DF; font-weight: 500; }
+article code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  background: rgba(196, 130, 74, 0.1);
+  color: #C4824A;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+}
+article th, article td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(239, 233, 223, 0.08);
+}
+article th {
+  font-weight: 500;
+  color: #C4824A;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* CTA island */
+.cta {
+  margin: 56px 0 24px;
+  padding: 32px;
+  background: #16120D;
+  border: 1px solid rgba(196, 130, 74, 0.2);
+  border-radius: 16px;
+  text-align: center;
+}
+.cta h3 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 400; color: #EFE9DF;
+  font-size: 24px; margin: 0 0 10px; letter-spacing: 0;
+}
+.cta p { color: rgba(239, 233, 223, 0.6); margin-bottom: 20px; font-size: 14px; }
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #C4824A, #D9955E);
+  color: #0C0906;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+}
+.cta-btn:hover { text-decoration: none; opacity: 0.9; }
+
+/* TOC */
+.toc {
+  padding: 20px 24px;
+  background: #16120D;
+  border: 1px solid rgba(239, 233, 223, 0.1);
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+.toc-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(239, 233, 223, 0.4); margin-bottom: 10px;
+}
+.toc a { color: rgba(239, 233, 223, 0.7); font-size: 14px; display: block; padding: 4px 0; }
+
+/* FAQ */
+.faq { margin-top: 48px; }
+.faq-q {
+  font-family: 'DM Sans', sans-serif; font-weight: 500;
+  font-size: 17px; color: #EFE9DF;
+  margin: 24px 0 8px;
+}
+.faq-a { color: rgba(239, 233, 223, 0.75); font-size: 15px; line-height: 1.7; }
+
+/* Post listing (blog index) */
+.post-list { display: flex; flex-direction: column; gap: 24px; }
+.post-card {
+  display: block;
+  padding: 24px 28px;
+  background: #16120D;
+  border: 1px solid rgba(239, 233, 223, 0.10);
+  border-radius: 16px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  color: inherit;
+}
+.post-card:hover {
+  border-color: rgba(196, 130, 74, 0.35);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.post-meta {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: rgba(239, 233, 223, 0.4);
+  margin-bottom: 10px;
+}
+.post-title {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 24px; color: #EFE9DF; margin-bottom: 8px;
+  line-height: 1.2;
+}
+.post-excerpt {
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: rgba(239, 233, 223, 0.65); line-height: 1.6;
+}
+
+/* Related posts (link back at end of article) */
+.related {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(239, 233, 223, 0.08);
+}
+.related-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(239, 233, 223, 0.4); margin-bottom: 16px;
+}
+.related a {
+  display: block;
+  padding: 10px 0;
+  color: rgba(239, 233, 223, 0.8);
+  font-size: 15px;
+}
+.related a:hover { color: #C4824A; }
+
+/* Footer on article pages */
+.article-footer {
+  margin-top: 64px;
+  color: rgba(239, 233, 223, 0.4);
+  font-size: 14px;
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #C4824A; outline-offset: 2px;
+}

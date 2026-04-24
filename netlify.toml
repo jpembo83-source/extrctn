@@ -1,0 +1,55 @@
+[build]
+  publish = "."
+  command = "echo 'Static site, no build needed'"
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/eula"
+  to = "/eula.html"
+  status = 200
+
+[[redirects]]
+  from = "/support"
+  to = "/support.html"
+  status = 200
+
+# Blog index — maps /blog → /blog/index.html so the trailing-slash URL
+# is the canonical form (matches how the sitemap lists it and how most
+# CMSes treat blog indexes).
+[[redirects]]
+  from = "/blog"
+  to = "/blog/"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# sitemap.xml must be served as application/xml — some CDNs default to
+# text/html for unknown extensions, which makes Google Search Console
+# reject the sitemap with "Could not read your sitemap".
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+# robots.txt must be text/plain. Some Netlify edge setups serve .txt as
+# application/octet-stream which prevents crawlers from reading it.
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"

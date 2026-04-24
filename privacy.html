@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Extraction</title>
+  <style>
+    :root { --bg: #1a1612; --card: #231f1b; --cream: #f5f0e8; --dim: #a89f94; --accent: #c8a97e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--cream); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 40px 20px 80px; }
+    .container { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 8px; color: var(--accent); }
+    .effective { font-size: 14px; color: var(--dim); margin-bottom: 40px; }
+    h2 { font-size: 20px; margin-top: 36px; margin-bottom: 12px; color: var(--accent); }
+    h3 { font-size: 16px; margin-top: 20px; margin-bottom: 8px; color: var(--cream); }
+    p, li { font-size: 15px; color: var(--dim); margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #3a342e; font-size: 14px; color: var(--dim); }
+    th { color: var(--cream); font-weight: 600; }
+    .highlight { background: var(--card); border-radius: 12px; padding: 20px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective Date: April 5, 2026 &nbsp;|&nbsp; Last Updated: April 5, 2026</p>
+
+    <p>Extraction ("we," "our," or "the app") is a premium espresso and coffee tracking application. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains what information we collect, how we use it, and your rights regarding that data.</p>
+
+    <h2>1. Information We Collect</h2>
+
+    <h3>1.1 Account Information</h3>
+    <p>When you create an account, we collect:</p>
+    <ul>
+      <li><strong>Email address</strong> — provided directly or via Apple Sign-In</li>
+      <li><strong>Display name</strong> — optionally provided by you</li>
+      <li><strong>Password</strong> — securely hashed; we never store or access your plaintext password</li>
+    </ul>
+    <p>If you use <strong>Sign in with Apple</strong>, Apple may provide us with your name and email address (or a private relay email if you choose to hide your email). We receive an authentication token — we do not receive or store your Apple ID password.</p>
+
+    <h3>1.2 Profile Information</h3>
+    <p>You may optionally provide:</p>
+    <ul>
+      <li>Username, display name, and biography</li>
+      <li>City</li>
+      <li>Preferred brewing method</li>
+      <li>Temperature unit preference</li>
+      <li>Notification preferences</li>
+    </ul>
+
+    <h3>1.3 Coffee &amp; Brewing Data</h3>
+    <p>To provide core app functionality, we store data you create:</p>
+    <ul>
+      <li><strong>Coffee library</strong> — bean names, roasters, origins, processing methods, flavor notes, roast dates, ratings, purchase prices, and reorder links</li>
+      <li><strong>Brew shots</strong> — dose, yield, time, temperature, pressure, ratings, notes, and equipment used</li>
+      <li><strong>Equipment</strong> — brand, model, category, specifications, and notes</li>
+    </ul>
+
+    <h3>1.4 Images</h3>
+    <p>When you use the camera or photo library to scan a coffee bag or equipment:</p>
+    <ul>
+      <li>The image is sent directly to Anthropic's AI API for analysis</li>
+      <li><strong>We do not store your images</strong> on our servers</li>
+      <li>The image is used only to extract coffee or equipment information and is not retained after processing</li>
+    </ul>
+
+    <h3>1.5 Subscription &amp; Purchase Data</h3>
+    <ul>
+      <li>Subscription tier and status</li>
+      <li>Feature usage counts (e.g., number of scans used)</li>
+      <li>RevenueCat customer identifier (for managing subscriptions)</li>
+    </ul>
+    <p><strong>We do not collect or store any payment card details.</strong> All payment processing is handled by Apple through the App Store.</p>
+
+    <h3>1.6 Device Permissions</h3>
+    <p>The app may request the following permissions:</p>
+    <table>
+      <tr><th>Permission</th><th>Purpose</th></tr>
+      <tr><td>Camera</td><td>Scan coffee bag labels and equipment</td></tr>
+      <tr><td>Photo Library</td><td>Select existing photos for scanning</td></tr>
+      <tr><td>Notifications</td><td>Alert you when coffee reaches peak freshness</td></tr>
+    </table>
+    <p>You can revoke any of these permissions at any time in your device Settings.</p>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Provide, maintain, and improve the Extraction app experience</li>
+      <li>Authenticate your identity and manage your account</li>
+      <li>Store and sync your coffee library, brew history, and equipment across sessions</li>
+      <li>Generate AI-powered coffee bag recognition, brew recipes, and barista advice</li>
+      <li>Manage your subscription and enforce feature limits</li>
+      <li>Send notifications you have opted into (e.g., peak freshness alerts)</li>
+    </ul>
+
+    <h2>3. Third-Party Services</h2>
+    <p>We share data with the following services, each governed by their own privacy policies:</p>
+
+    <div class="highlight">
+      <h3>Supabase (Database &amp; Authentication)</h3>
+      <p>Your account data, coffee library, brew history, equipment, and subscription information are stored in Supabase's PostgreSQL database. Authentication is handled by Supabase Auth.</p>
+      <p><a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy</a></p>
+    </div>
+
+    <div class="highlight">
+      <h3>Anthropic (AI Image Analysis &amp; Chat)</h3>
+      <p>When you scan a coffee bag or equipment, the image is sent to Anthropic's Claude API for analysis. Coffee metadata is also sent for recipe generation and barista chat features. Anthropic processes this data according to their API terms.</p>
+      <p><a href="https://www.anthropic.com/privacy" target="_blank">Anthropic Privacy Policy</a></p>
+    </div>
+
+    <div class="highlight">
+      <h3>RevenueCat (Subscription Management)</h3>
+      <p>Your anonymous user ID and purchase transaction data are shared with RevenueCat to manage subscriptions and verify entitlements. RevenueCat does not receive your email or personal profile data.</p>
+      <p><a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a></p>
+    </div>
+
+    <div class="highlight">
+      <h3>Apple (Authentication &amp; Payments)</h3>
+      <p>If you use Sign in with Apple, authentication tokens are exchanged with Apple's identity service. All in-app purchases are processed by Apple through the App Store. We do not receive or store your payment details.</p>
+      <p><a href="https://www.apple.com/legal/privacy/" target="_blank">Apple Privacy Policy</a></p>
+    </div>
+
+    <h2>4. What We Do NOT Collect</h2>
+    <ul>
+      <li>Location or GPS data</li>
+      <li>Device identifiers (UDID, IDFA, advertising IDs)</li>
+      <li>Browsing history or usage analytics</li>
+      <li>Contacts, calendars, or other personal data</li>
+      <li>Payment card numbers or bank details</li>
+      <li>Health or biometric data</li>
+    </ul>
+    <p>We do not use any third-party analytics, tracking, or advertising SDKs.</p>
+
+    <h2>5. Data Storage &amp; Security</h2>
+    <ul>
+      <li>All data is transmitted over encrypted HTTPS connections</li>
+      <li>Passwords are cryptographically hashed — we never store plaintext passwords</li>
+      <li>Authentication sessions are securely stored on your device</li>
+      <li>Database access is restricted by row-level security policies tied to your user ID</li>
+    </ul>
+
+    <h2>6. Data Retention</h2>
+    <p>We retain your data for as long as your account is active. If you delete your account, we will delete your personal data within 30 days, except where retention is required by law or for legitimate business purposes (e.g., fraud prevention, legal obligations).</p>
+
+    <h2>7. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> your personal data</li>
+      <li><strong>Correct</strong> inaccurate data</li>
+      <li><strong>Delete</strong> your account and associated data</li>
+      <li><strong>Export</strong> your data in a portable format</li>
+      <li><strong>Withdraw consent</strong> for optional data processing</li>
+      <li><strong>Object</strong> to certain processing activities</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:privacy@extrctn.com">privacy@extrctn.com</a>.</p>
+
+    <h2>8. Children's Privacy</h2>
+    <p>Extraction is not directed at children under 13 (or 16 in the EEA). We do not knowingly collect personal data from children. If you believe a child has provided us with personal information, please contact us and we will promptly delete it.</p>
+
+    <h2>9. International Data Transfers</h2>
+    <p>Your data may be processed in countries other than your own, including the United States, where our service providers (Supabase, Anthropic, RevenueCat) operate. We ensure appropriate safeguards are in place in accordance with applicable data protection laws.</p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the "Last Updated" date at the top of this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>11. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy or your data, contact us at:</p>
+    <p><a href="mailto:privacy@extrctn.com">privacy@extrctn.com</a></p>
+  </div>
+</body>
+</html>

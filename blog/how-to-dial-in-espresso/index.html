@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+  Target keywords: "how to dial in espresso", "espresso dial in",
+  "dial in espresso at home". Volume is high, intent is informational,
+  and the post needs to establish real technique credibility before
+  the soft CTA to download the app. Per brief: 1,500-2,000 words.
+  This ships as the launch post; the first pass is ~1,800 words.
+
+  Schema: Article + FAQPage to bid for both the standard rich result
+  AND the FAQ PAA rich result ("People also ask" panel).
+-->
+<title>How to Dial In Your Espresso: A Step-by-Step Guide for Home Baristas</title>
+<meta name="description" content="A step-by-step guide to dialling in espresso at home — dose, grind, yield, and time. How to change one variable at a time and actually taste the difference.">
+<link rel="canonical" href="https://extrctn.com/blog/how-to-dial-in-espresso/">
+<meta property="og:title" content="How to Dial In Your Espresso: A Step-by-Step Guide">
+<meta property="og:description" content="Dose, grind, yield, time. Change one variable at a time and learn which one moved the cup.">
+<meta property="og:url" content="https://extrctn.com/blog/how-to-dial-in-espresso/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://extrctn.com/blog/how-to-dial-in-espresso/hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:published_time" content="2026-04-22T00:00:00Z">
+<meta property="article:author" content="Extraction">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0C0906;
+  color: #EFE9DF;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #C4824A; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  height: 64px;
+  background: rgba(12, 9, 6, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 1px solid rgba(239, 233, 223, 0.07);
+}
+.nav-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 22px; color: #EFE9DF;
+}
+.nav-download {
+  font-size: 12px;
+  background: #C4824A; color: #0C0906;
+  border-radius: 20px; padding: 8px 16px; font-weight: 500;
+}
+.nav-download:hover { text-decoration: none; }
+
+article { max-width: 720px; margin: 0 auto; padding: 64px 24px 120px; }
+
+.breadcrumb {
+  font-size: 12px; color: rgba(239, 233, 223, 0.4);
+  margin-bottom: 24px; letter-spacing: 0.5px;
+}
+.breadcrumb a { color: rgba(239, 233, 223, 0.55); }
+
+h1 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 300; font-size: 48px; line-height: 1.1;
+  margin-bottom: 18px;
+}
+@media (max-width: 767px) { h1 { font-size: 34px; } }
+
+.byline {
+  font-size: 12px; color: rgba(239, 233, 223, 0.45);
+  margin-bottom: 48px; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+article h2 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 400; font-size: 30px; line-height: 1.2;
+  color: #EFE9DF;
+  margin: 48px 0 16px;
+}
+article h3 {
+  font-family: 'DM Sans', sans-serif; font-weight: 500;
+  font-size: 17px; color: #C4824A;
+  margin: 32px 0 10px; letter-spacing: 0.3px;
+}
+article p, article li {
+  font-size: 16px; line-height: 1.75;
+  color: rgba(239, 233, 223, 0.82);
+  margin-bottom: 16px;
+}
+article ul, article ol { padding-left: 24px; margin-bottom: 16px; }
+article li { margin-bottom: 8px; }
+article blockquote {
+  border-left: 2px solid #C4824A;
+  padding: 2px 0 2px 18px;
+  margin: 24px 0;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 20px; line-height: 1.5;
+  color: rgba(239, 233, 223, 0.9);
+}
+article strong { color: #EFE9DF; font-weight: 500; }
+article code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  background: rgba(196, 130, 74, 0.1);
+  color: #C4824A;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.cta {
+  margin: 56px 0 24px;
+  padding: 32px;
+  background: #16120D;
+  border: 1px solid rgba(196, 130, 74, 0.2);
+  border-radius: 16px;
+  text-align: center;
+}
+.cta h3 {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-weight: 400; color: #EFE9DF;
+  font-size: 24px; margin: 0 0 10px; letter-spacing: 0;
+}
+.cta p { color: rgba(239, 233, 223, 0.6); margin-bottom: 20px; font-size: 14px; }
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #C4824A, #D9955E);
+  color: #0C0906;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+}
+.cta-btn:hover { text-decoration: none; opacity: 0.9; }
+
+.toc {
+  padding: 20px 24px;
+  background: #16120D;
+  border: 1px solid rgba(239, 233, 223, 0.1);
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+.toc-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(239, 233, 223, 0.4); margin-bottom: 10px;
+}
+.toc a { color: rgba(239, 233, 223, 0.7); font-size: 14px; display: block; padding: 4px 0; }
+
+.faq { margin-top: 48px; }
+.faq-q {
+  font-family: 'DM Sans', sans-serif; font-weight: 500;
+  font-size: 17px; color: #EFE9DF;
+  margin: 24px 0 8px;
+}
+.faq-a { color: rgba(239, 233, 223, 0.75); font-size: 15px; line-height: 1.7; }
+</style>
+
+<!-- Article schema — pushes us into the article rich result. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Dial In Your Espresso: A Step-by-Step Guide for Home Baristas",
+  "description": "A step-by-step guide to dialling in espresso at home — dose, grind, yield, and time. How to change one variable at a time and actually taste the difference.",
+  "image": "https://extrctn.com/blog/how-to-dial-in-espresso/hero.jpg",
+  "author": { "@type": "Organization", "name": "Extraction" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Extraction",
+    "logo": { "@type": "ImageObject", "url": "https://extrctn.com/og-image.png" }
+  },
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "mainEntityOfPage": "https://extrctn.com/blog/how-to-dial-in-espresso/"
+}
+</script>
+
+<!-- FAQPage schema — bids for the PAA ("People also ask") rich result. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does 'dialling in espresso' mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dialling in is the process of adjusting dose, grind size, and yield for a specific coffee on a specific machine until the shot tastes balanced — not sour, not bitter — and pulls within a target time window (typically 25 to 32 seconds)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best ratio for espresso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 1:2 ratio (18 g in, 36 g out) is the standard starting point for most modern espresso. Darker roasts sit closer to 1:2, lighter roasts often extract better at 1:2.5 or longer. The ratio is a starting point, not a rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should an espresso shot take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "25 to 32 seconds from the moment the pump starts is the standard target for a double shot. Faster means the grind is too coarse; slower means too fine. Time alone is a weak signal — always taste the cup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I change grind or dose first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Change one variable at a time. Most home baristas adjust grind first — it has the biggest impact on extraction. Keep dose and yield fixed until the grind is in range, then refine from there."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-wordmark">Extrac<span>tion</span></a>
+  <a href="https://apps.apple.com/us/app/extraction/id6761392610" class="nav-download" target="_blank" rel="noopener">Download</a>
+</nav>
+
+<article>
+  <div class="breadcrumb"><a href="/blog/">Blog</a> · Guide</div>
+  <h1>How to dial in your espresso: a step-by-step guide for home baristas.</h1>
+  <div class="byline">April 2026 · 12 min read</div>
+
+  <img class="hero-img" src="hero.jpg" alt="Espresso pulling from a double-spout portafilter into two glass demitasse cups, dark amber crema forming." width="1600" height="900" fetchpriority="high">
+
+  <div class="toc">
+    <div class="toc-label">In this guide</div>
+    <a href="#what">What "dialling in" actually means</a>
+    <a href="#variables">The four variables — and the order to change them</a>
+    <a href="#starting">Your starting recipe</a>
+    <a href="#grind">Grind: the biggest lever</a>
+    <a href="#taste">Taste: the only signal that matters</a>
+    <a href="#workflow">A repeatable dial-in workflow</a>
+    <a href="#faq">Frequently asked questions</a>
+  </div>
+
+  <p>Most people learn espresso by buying a machine, pulling a shot, tasting something bitter, and spending the next six months adjusting dials with no coherent theory. It does not have to be like that. Dialling in is a solvable problem with a short list of variables and a clear diagnostic language.</p>
+
+  <p>This guide is written for a home barista with a single-boiler or dual-boiler espresso machine, a decent grinder, and a bag of specialty coffee. If that is you, in the next fifteen minutes you will have a working framework that lets you sit down with a new bag, pull three shots, and land on a recipe you are happy to drink.</p>
+
+  <h2 id="what">What "dialling in" actually means</h2>
+
+  <p>Dialling in is the process of adjusting the variables under your control — dose, grind, and yield — until a specific coffee, on your specific machine, tastes balanced. Balance is the goal. Not a specific time. Not a specific ratio. Balance.</p>
+
+  <p>A balanced shot has three properties:</p>
+  <ul>
+    <li><strong>It is not sour.</strong> Sourness means under-extraction — you pulled the shot before enough of the coffee's compounds had dissolved into the water.</li>
+    <li><strong>It is not astringent or bitter.</strong> Bitterness means over-extraction — the water stayed in contact with the grounds too long and pulled out compounds you did not want.</li>
+    <li><strong>It tastes like the notes on the bag.</strong> When you read "blackcurrant, honey, cocoa" and you can pick out at least one of those in the cup, you are in the sweet spot.</li>
+  </ul>
+
+  <p>Every dial-in is an attempt to land on those three at once, for this bean, on this machine, today. Next week's bag will be different. Your job is not to memorise numbers — it is to learn the dance.</p>
+
+  <h2 id="variables">The four variables — and the order to change them</h2>
+
+  <p>There are four variables you have control over, and you should change them in this order:</p>
+
+  <h3>1. Dose (the amount of dry coffee)</h3>
+  <p>Set this once per basket size and stop thinking about it. A standard 18 g VST basket takes 18 g. A 20 g basket takes 20 g. Pick a basket, stick with it, and do not drift your dose during a dial-in. Changing dose while you are also changing grind makes it impossible to tell which move fixed the cup.</p>
+
+  <h3>2. Ratio (how much liquid you pull)</h3>
+  <p>The industry-standard starting ratio for modern espresso is <strong>1:2</strong> — 18 g in, 36 g out by weight. Darker roasts sit closer to this. Lighter roasts, which are harder to extract, often taste better at 1:2.5 or even 1:3. Start at 1:2 and only stretch the ratio if the shot tastes sour at a reasonable grind.</p>
+
+  <h3>3. Grind size (the biggest lever)</h3>
+  <p>Grind is where 80% of dialling in happens. Finer grind means more surface area, more resistance, slower flow, higher extraction. Coarser means less of all four. Most new home baristas change grind in enormous steps and lose the thread. Move in small increments. One click at a time.</p>
+
+  <h3>4. Time (a diagnostic, not a target)</h3>
+  <p>Time is what falls out of the other three, not something you set. A good double shot pulls in 25 to 32 seconds. If yours pulls in 18 seconds, your grind is too coarse. If it pulls in 45 seconds, too fine. But a 28-second shot that tastes sour is still sour. Time is a diagnostic, never the goal.</p>
+
+  <blockquote>If you remember nothing else from this guide, remember this: change one variable at a time, and always taste the cup before you adjust.</blockquote>
+
+  <h2 id="starting">Your starting recipe</h2>
+
+  <p>Before you touch the grinder, write your starting recipe down. Here is the default for a modern medium-roast specialty coffee on an 18 g basket:</p>
+
+  <ul>
+    <li><strong>Dose:</strong> 18 g</li>
+    <li><strong>Yield:</strong> 36 g (1:2 ratio)</li>
+    <li><strong>Target time:</strong> 25–32 seconds</li>
+    <li><strong>Water temp:</strong> 93°C (whatever your machine does by default is fine)</li>
+    <li><strong>Grind:</strong> whatever your last known good grind was; one click finer if you have a new bag.</li>
+  </ul>
+
+  <p>Pull the shot. Taste it. Do not sweeten. Do not add milk. Taste it straight and write down one word: <strong>sour</strong>, <strong>balanced</strong>, or <strong>bitter</strong>.</p>
+
+  <h2 id="grind">Grind: the biggest lever</h2>
+
+  <p>Once you have tasted the first shot, the move is almost always a grind adjustment:</p>
+
+  <ul>
+    <li><strong>Sour?</strong> Grind finer by one step. Pull another shot. Taste again.</li>
+    <li><strong>Bitter or harsh?</strong> Grind coarser by one step. Pull another shot. Taste again.</li>
+    <li><strong>Balanced but odd?</strong> The grind is in range. The variable to move is probably ratio — try a 1:2.3 instead of 1:2, or bump yield up 4 grams.</li>
+  </ul>
+
+  <p>"One step" means one click on a click-based grinder (1Zpresso, Comandante), one number on a stepped grinder (Niche, Baratza), or a tenth of a rotation on a stepless grinder (Eureka, Mazzer). Different grinders have wildly different step sizes. The Niche Zero's steps are large. The 1Zpresso K-Ultra's are small. Learn your grinder, and note that if you change grinders the calibration starts over from scratch.</p>
+
+  <h3>When the grind is right, the shot has a specific look</h3>
+
+  <p>A well-dialled-in shot from a well-prepared puck has a particular aesthetic. The first drops fall between 6 and 10 seconds in. The stream is amber, thin, and unbroken — never spritzing or gushing. The crema arrives reddish-brown, not pale blonde, and does not dissipate instantly. You will learn what your machine's "right" looks like within a few bags. Trust your eyes after you trust your tongue.</p>
+
+    <figure>
+    <img class="inline-img" src="inline-1.jpg" alt="Top-down macro of an espresso cup showing a perfect tiger-stripe crema pattern." width="1200" height="675" loading="lazy">
+    <figcaption class="img-caption">Tiger stripes in the crema — the visual signal of a balanced shot.</figcaption>
+  </figure>
+
+  <h2 id="taste">Taste: the only signal that matters</h2>
+
+  <p>Most new baristas get obsessed with numbers. Time in the cup. Refractometer readings. Puck resistance. These are all correlates of a balanced shot, never the shot itself. The cup is the shot. If you are caught between two adjustments and the cup tastes great, stop adjusting.</p>
+
+  <p>Develop the habit of tasting the shot straight, without milk or sugar, every time. Even if you are making a flat white. The espresso under the milk is where the information lives. Write one sentence in your notes: "Bright, clean, a bit sharp on the finish — grind one notch finer next time." That single sentence is worth more than a week of refractometer readings.</p>
+
+  <h2 id="workflow">A repeatable dial-in workflow</h2>
+
+  <p>Here is the workflow I use for every new bag. It takes about ten minutes and three shots of coffee.</p>
+
+  <ol>
+    <li><strong>Shot 1.</strong> Starting recipe — your last known good grind, 18 g in, 36 g out, whatever time falls out. Taste.</li>
+    <li><strong>Shot 2.</strong> One grind step in the direction the first shot pointed (finer if sour, coarser if bitter). Same dose and yield. Taste.</li>
+    <li><strong>Shot 3.</strong> If shot 2 is closer but not there yet, move one more step in the same direction. If it overshot, move half a step back. Taste.</li>
+    <li><strong>Shot 4 and beyond.</strong> You should be within the sweet window by now. Refine with ratio adjustments (small — 2 g up or down on yield at a time) or leave it alone and drink the coffee.</li>
+  </ol>
+
+  <p>Three shots, with notes, is a bag dialled in. The first week on a new bag you will pull slightly different recipes every day as the coffee continues to degas. The second week, you settle. The third week, you finish the bag. Start again.</p>
+
+  <div class="cta">
+    <h3>Let the app do the book-keeping.</h3>
+    <p>Extraction is an espresso log built around exactly this workflow. Every shot writes itself — dose, grind, yield, time, taste — so you can see what moved the cup and what didn't. Pair an Acaia scale and the brew runs itself.</p>
+    <a class="cta-btn" href="https://apps.apple.com/us/app/extraction/id6761392610" target="_blank" rel="noopener">Download on the App Store</a>
+  </div>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <div class="faq">
+    <div class="faq-q">Why does my espresso taste sour?</div>
+    <p class="faq-a">Sourness almost always means under-extraction. Try grinding finer by one click — this slows the flow, gives water more contact time with the grounds, and pulls out more of the sugars and aromatics that balance the acidity.</p>
+
+    <div class="faq-q">Why does my espresso taste bitter?</div>
+    <p class="faq-a">Bitterness is over-extraction. Grind coarser by one click, or pull a shorter ratio (try 1:1.8 instead of 1:2). Dark roasts are especially prone to bitter shots — start with a more conservative ratio.</p>
+
+    <div class="faq-q">What's the best grinder for dialling in espresso at home?</div>
+    <p class="faq-a">Any grinder with stepless or fine-stepped adjustment. The Niche Zero, Eureka Mignon series, DF64, 1Zpresso J-Max, and the Baratza Sette 270 all dial in well. What matters more than the brand is that adjustments are small enough that you can move one notch at a time.</p>
+
+    <div class="faq-q">Do I need a scale to dial in espresso?</div>
+    <p class="faq-a">Yes. Without a scale you cannot measure dose or yield, and without those two measurements dialling in is guessing. Any kitchen scale with 0.1 g resolution works. A proper brew scale like the Acaia Lunar, Pearl, or Pyxis adds timer and pour-curve tracking — nice, not essential.</p>
+
+    <div class="faq-q">How often do I need to re-dial in?</div>
+    <p class="faq-a">Every new bag, and often within a bag as it ages. Coffee degasses for about two weeks after roasting; during that window the same grind setting produces different shots. Assume you will nudge grind once or twice per bag.</p>
+  </div>
+
+  <p style="margin-top: 64px; color: rgba(239, 233, 223, 0.4); font-size: 14px;">Written by the team behind <a href="/">Extraction</a>, the espresso log and coffee tracker for home baristas.</p>
+</article>
+
+</body>
+</html>
